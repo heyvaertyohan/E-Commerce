@@ -1,0 +1,114 @@
+{% extends '::layout.html.twig' %}
+
+{% block head %}
+    {{ parent() }}
+
+    <link href="{{ asset('bundles/ecommerceecommerce/css/frontend.css') }}" rel="stylesheet" type="text/css" >
+{% endblock %}
+
+{% block header %}
+    <header>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="index.php">DevAndClick</a>
+
+                    <div class="nav-collapse collapse">
+                        <form class="navbar-form form-search pull-right">
+                            <input id="Search" name="Search" type="text" class="input-medium search-query">
+                            <button type="submit" class="btn">Rechercher</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+{% endblock %}
+
+{% block main %}
+
+    <div class="container">
+        <div class="row">
+
+            <div class="span3">
+
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Nos produits</li>
+                        <li class="active">
+                            <a href="index.php">Légumes</a>
+                        </li>
+                        <li>
+                            <a href="index.php">Fruits</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li class="active">
+                            <a href="{{ path('fos_user_security_login') }} ">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_registration_register') }} ">S'incrire</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            {% block pagecontain %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+    <footer id="footer" class="vspace20">
+        <div class="container">
+            <div class="row">
+                <div class="span4 offset1">
+                    <h4>Informations</h4>
+                    <ul class="nav nav-stacked">
+                        <li><a href="texte.php">CGV</a>
+                        <li><a href="texte.php">Mentions légales</a>
+                    </ul>
+                </div>
+
+                <div class="span4">
+                    <h4>Notre entrepôt</h4>
+
+                    <p><i class="icon-map-marker"></i>&nbsp;Paris 75 000 - 3 rue des jardins</p>
+                </div>
+
+                <div class="span2">
+                    <h4>Nous contacter</h4>
+
+                    <p><i class="icon-phone"></i>&nbsp;Tel: 02 35 00 00 00</p>
+
+                    <p><i class="icon-print"></i>&nbsp;Fax: 02 35 00 00 00</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span4">
+                    <p>&copy; Copyright 2014 - DevAndClick</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascript %}
+    <script src="../js/jquery-1.10.0.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+{% endblock %}
+
+
+
