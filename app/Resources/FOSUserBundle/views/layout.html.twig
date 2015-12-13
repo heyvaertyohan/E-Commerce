@@ -32,18 +32,22 @@
 {% endblock %}
 
 {% block main %}
-    <div class="container">
-        <div class="row">
-            {% block menu %}
-            {% endblock %}
+    {% if app.request.hasPreviousSession %}
+        {% for type, messages in app.session.flashbag.all() %}
+            {% for message in messages %}
+                <div class="flash-{{ type }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+    {% endif %}
 
-            {% block pagecontain %}
-            {% endblock %}
-        </div>
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
     </div>
+
 {% endblock %}
-
-
 
 {% block footer %}
     <footer id="footer" class="vspace20">
@@ -85,5 +89,4 @@
     <script src="../js/jquery-1.10.0.min.js"></script>
     <script src="../js/bootstrap.js"></script>
 {% endblock %}
-
 
