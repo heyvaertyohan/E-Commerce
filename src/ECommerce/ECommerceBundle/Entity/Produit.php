@@ -3,12 +3,13 @@
 namespace ECommerce\ECommerceBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Produit
  *
- * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Table("produit")
+ * @ORM\Entity(repositoryClass="ECommerce\ECommerceBundle\Entity\ProduitRepository")
  */
 class Produit
 {
@@ -29,6 +30,15 @@ class Produit
     private $nom;
 
     /**
+     *
+     * @var type String
+     * @Gedmo\Slug(fields={"id","nom"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+
+    /**
      * @var string
      *
      * @ORM\Column(name="description", type="string", length=255)
@@ -36,12 +46,13 @@ class Produit
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="Image")
+     * @ORM\OneToOne(targetEntity="Media")
      */
-    private $image;
+    private $media;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Categorie", mappedBy="categorie")
+     * @ORM\ManyToOne(targetEntity="ECommerce\ECommerceBundle\Entity\Categorie", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
 
@@ -61,9 +72,9 @@ class Produit
 
 
     /**
-     * @var integer
+     * @var float
      *
-     * @ORM\Column(name="prix", type="integer")
+     * @ORM\Column(name="prix", type="float")
      */
     private $prix;
 
@@ -230,27 +241,27 @@ class Produit
     }
 
     /**
-     * Set image
+     * Set media
      *
-     * @param \ECommerce\ECommerceBundle\Entity\Image $image
+     * @param \ECommerce\ECommerceBundle\Entity\Media $media
      *
      * @return Produit
      */
-    public function setImage(\ECommerce\ECommerceBundle\Entity\Image $image = null)
+    public function setMedia(\ECommerce\ECommerceBundle\Entity\Media $media = null)
     {
-        $this->image = $image;
+        $this->media = $media;
 
         return $this;
     }
 
     /**
-     * Get image
+     * Get media
      *
-     * @return \ECommerce\ECommerceBundle\Entity\Image
+     * @return \ECommerce\ECommerceBundle\Entity\Media
      */
-    public function getImage()
+    public function getMedia()
     {
-        return $this->image;
+        return $this->media;
     }
     /**
      * Constructor
@@ -261,33 +272,47 @@ class Produit
     }
 
     /**
-     * Add categorie
+     * Set slug
      *
-     * @param \ECommerce\ECommerceBundle\Entity\Categorie $categorie
+     * @param string $slug
      *
      * @return Produit
      */
-    public function addCategorie(\ECommerce\ECommerceBundle\Entity\Categorie $categorie)
+    public function setSlug($slug)
     {
-        $this->categorie[] = $categorie;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Remove categorie
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set categorie
      *
      * @param \ECommerce\ECommerceBundle\Entity\Categorie $categorie
+     *
+     * @return Produit
      */
-    public function removeCategorie(\ECommerce\ECommerceBundle\Entity\Categorie $categorie)
+    public function setCategorie(\ECommerce\ECommerceBundle\Entity\Categorie $categorie)
     {
-        $this->categorie->removeElement($categorie);
+        $this->categorie = $categorie;
+
+        return $this;
     }
 
     /**
      * Get categorie
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \ECommerce\ECommerceBundle\Entity\Categorie
      */
     public function getCategorie()
     {

@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class PanierController extends Controller
 {
-    public function indexAction()
+    public function listAction()
     {
-        return $this->render('ECommerceECommerceBundle:FrontEnd/Panier:index.html.twig');
+        return $this->render('ECommerceECommerceBundle:FrontEnd/Panier:list.html.twig');
     }
 
     public function livraisonAction()

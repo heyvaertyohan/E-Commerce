@@ -1,14 +1,22 @@
-e_commerce_homepage:
+e_commerce_list_produit:
     path:     /
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/ECommerce:index }
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:list }
 
-e_commerce_produit:
-    path:     /produit
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:index }
+e_commerce_list_produits_categorie:
+    path:     /categorie/{slug}
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:listByCategorie }
+
+e_commerce_recherche_produit:
+    path:     /recherche
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:recherche }
+
+e_commerce_read_produit:
+    path:     /read/{slug}
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:read }
 
 e_commerce_panier:
     path:     /panier
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:index }
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:list }
 
 e_commerce_panier_livraison:
     path:     /panier/livraison

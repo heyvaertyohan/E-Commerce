@@ -84,3 +84,9 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: ECommerce\UtilisateurBundle\Entity\Utilisateur
+
+# stof doctrine extention
+stof_doctrine_extensions:
+    orm:
+        default:
+            sluggable: true

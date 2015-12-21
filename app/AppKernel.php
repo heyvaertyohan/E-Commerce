@@ -22,8 +22,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             new ECommerce\UtilisateurBundle\ECommerceUtilisateurBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
-
+            new ECommerce\PageBundle\ECommercePageBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

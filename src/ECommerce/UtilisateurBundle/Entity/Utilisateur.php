@@ -19,9 +19,23 @@ class Utilisateur extends BaseUser
      */
     protected $id;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="ECommerce\ECommerceBundle\Entity\Commande", mappedBy="utilisateur", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $commandes;
+
+    /**
+     * @ORM\OneToMany(targetEntity="ECommerce\ECommerceBundle\Entity\Commande", mappedBy="adresse", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     * */
+    private $adresse;
+
     public function __construct()
     {
         parent::__construct();
-        // your own logic
+        $this->commandes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->adresse = new \Doctrine\Common\Collections\ArrayCollection();
     }
 }

@@ -16,14 +16,18 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="index.php">DevAndClick</a>
+                    <a class="brand" href="index.php">ECommerce fruits légumes</a>
 
                     <div class="nav-collapse collapse">
-                        <form class="navbar-form form-search pull-right">
-                            <input id="Search" name="Search" type="text" class="input-medium search-query">
-                            <button type="submit" class="btn">Rechercher</button>
-                        </form>
+                        {% include ('ECommerceECommerceBundle:FrontEnd/Produit:recherche.html.twig') %}
                     </div>
+                    {#{% if form is not defined %}
+
+                        <div class="nav-collapse collapse">
+                            {% include ('ECommerceECommerceBundle:FrontEnd/Produit:recherche.html.twig') %}
+                        </div>
+                    {% endif %}#}
+
                 </div>
             </div>
         </div>
@@ -34,8 +38,28 @@
 {% block main %}
     <div class="container">
         <div class="row">
-            {% block menu %}
-            {% endblock %}
+            <div class="span3">
+
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Nos produits</li>
+
+                        {% block menu %}
+                        {% endblock %}
+                    </ul>
+                </div>
+
+                <div class="well">
+                    <ul class="nav nav-list">
+                        <li>
+                            <a href="{{ path('fos_user_security_login') }} ">Se connecter</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('fos_user_registration_register') }} ">S'incrire</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
             {% block pagecontain %}
             {% endblock %}
@@ -49,11 +73,16 @@
     <footer id="footer" class="vspace20">
         <div class="container">
             <div class="row">
+                {#{% include('@ECommercePage/Page/menu.html.twig') %}#}
                 <div class="span4 offset1">
                     <h4>Informations</h4>
+
                     <ul class="nav nav-stacked">
-                        <li><a href="texte.php">CGV</a>
-                        <li><a href="texte.php">Mentions légales</a>
+                        {% render(controller('ECommercePageBundle:Page:menu')) %}
+
+                    {#{% for page in list_pages %}
+                        <li><a href="{{ path('page_page', {id:page.id}) }}  ">{{ page.titre }}</a></li>
+                    {% endfor %}#}
                     </ul>
                 </div>
 
@@ -74,11 +103,12 @@
 
             <div class="row">
                 <div class="span4">
-                    <p>&copy; Copyright 2014 - DevAndClick</p>
+                    <p>&copy; Copyright 201 - Heyvaert Yohan</p>
                 </div>
             </div>
         </div>
     </footer>
+
 {% endblock %}
 
 {% block javascript %}

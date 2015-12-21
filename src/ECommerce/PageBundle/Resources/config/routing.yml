@@ -1,0 +1,8 @@
+page_page:
+    path:     /page/{slug}
+    defaults: { _controller: ECommercePageBundle:Page:page }
+
+page_menu:
+    path:     /menu
+    defaults: { _controller: ECommercePageBundle:Page:menu }
+
