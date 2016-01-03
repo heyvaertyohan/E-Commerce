@@ -16,14 +16,19 @@ class TVAData extends AbstractFixture implements OrderedFixtureInterface
 
         $tab_TVA = array(
             array(
-                "multiplicate" => "0.7777",
+                "multiplicate" => "1.21",
                 "nom" => "TVA 21%",
-                "valeur" => "1.21",
+                "valeur" => "0.21",
             ),
             array(
-                "multiplicate" => "0.7777",
+                "multiplicate" => "1.12",
                 "nom" => "TVA 12%",
-                "valeur" => "1.12"
+                "valeur" => "0.12"
+            ),
+            array(
+                "multiplicate" => "1.06",
+                "nom" => "TVA 6%",
+                "valeur" => "0.6"
             )
         );
 

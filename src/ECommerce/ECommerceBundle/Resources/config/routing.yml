@@ -1,4 +1,4 @@
-e_commerce_list_produit:
+e_commerce_list_produits:
     path:     /
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:list }
 
@@ -25,3 +25,11 @@ e_commerce_panier_livraison:
 e_commerce_panier_validation:
     path:     /panier/validation
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:validation }
+
+e_commerce_panier_ajouter:
+    path:     /panier/ajouter/{id}
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:ajouter }
+
+e_commerce_panier_supprimer:
+    path:     /panier/supprimer/{(id)
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:ajouter }

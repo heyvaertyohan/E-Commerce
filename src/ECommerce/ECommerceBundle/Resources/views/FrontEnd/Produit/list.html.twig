@@ -16,11 +16,13 @@
 
                     <div class="caption">
                         <h4>{{ produit.nom }}</h4>
+                        {% if produit.tva.valeur is not null %}
+                        <p>{{ produit.prix|tva(produit.tva.multiplicate) }} €</p>
+                        {% endif %}
 
-                        <p>{{ produit.prix }} €</p>
                         <td>
                             <a class="btn btn-primary" href="{{ path('e_commerce_read_produit', {slug:produit.slug}) }} ">Plus d'infos</a>
-                        <a class="btn btn-success" href="">Ajouter au panier</a>
+                        <a class="btn btn-success" href="{{ path('e_commerce_panier') }}">Ajouter au panier</a>
                     </div>
                 </div>
             </li>

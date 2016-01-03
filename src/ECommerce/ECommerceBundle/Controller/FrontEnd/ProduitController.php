@@ -11,12 +11,24 @@ class ProduitController extends Controller
 {
     public function listAction()
     {
+        $session = $this->getRequest()->getSession();
+
         $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->findAll();
         $form = $this->createForm(new RechercheType());
+        $panier = null;
+
+        if($session->has('panier'))
+        {
+            $panier = $session->get('panier');
+        }
+        else{
+            $panier = array();
+        }
 
         return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:list.html.twig', array(
             'list_produits' => $list_produits,
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'panier' => $panier
         ));
     }
 
@@ -52,11 +64,13 @@ class ProduitController extends Controller
     public function readAction(Produit $produit)
     {
         $produit = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->find($produit->getId());
+        $form = $this->createForm(new RechercheType());
         $list_categories = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Categorie')->findAll();
 
         return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:read.html.twig', array(
             'produit' => $produit,
-            'list_categories' => $list_categories
+            'list_categories' => $list_categories,
+            'form' => $form->createView()
         ));
     }
 

@@ -20,8 +20,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "tomate: légumes de couleur rouge",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "1.87",
-                "tva" => "21%",
+                "prix" => "1.64",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'tomate')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'legume')
@@ -32,8 +33,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "fruit très bon",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "1.54",
-                "tva" => "21%",
+                "prix" => "2.47",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'banane')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'fruit')
@@ -44,8 +46,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "légumes de couleur orange",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "0.54",
-                "tva" => "21%",
+                "prix" => "0.82",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'carotte')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'legume')
@@ -56,8 +59,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "Fruit très juteu",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "1.07",
-                "tva" => "21%",
+                "prix" => "1.64",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'poire')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'fruit')
@@ -68,8 +72,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "Légume mangé souvent en sauce blanche, très savoureu",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "1.94",
-                "tva" => "21%",
+                "prix" => "2.47",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'poirreau')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'legume')
@@ -80,8 +85,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "un pomme par jour éloigne du médecin",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "0.34",
-                "tva" => "21%",
+                "prix" => "0.82",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'pomme')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'fruit')
@@ -92,8 +98,9 @@ class ProduitData extends AbstractFixture implements OrderedFixtureInterface
                 "description" => "légumes souvent préparé avec de la mayohnnaire ou de la vinaigrette",
                 "disponible" => true,
                 "plage" => "",
-                "prix" => "0.14",
-                "tva" => "21%",
+                "prix" => "1.64",
+                "tva" =>
+                    $manager->getRepository('ECommerceECommerceBundle:Tva')->findOneBy(array('nom' => 'TVA 21%')),
                 "media" =>
                     $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'salade')),
                 "categorie" => $manager->getRepository('ECommerceECommerceBundle:Categorie')->findOneBy(array('nom' => 'legume')

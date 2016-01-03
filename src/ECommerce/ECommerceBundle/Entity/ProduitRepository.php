@@ -16,7 +16,7 @@ class ProduitRepository extends \Doctrine\ORM\EntityRepository
             ->select('u')
             ->where('u.categorie = :categorie')
             ->andWhere('u.disponible = 1')
-            ->orderBy('u.id')
+            ->orderBy('u.nom')
             ->setParameter('categorie', $categorie);
         return $qb->getQuery()->getResult();
     }

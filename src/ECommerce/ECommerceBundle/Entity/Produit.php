@@ -5,6 +5,8 @@ namespace ECommerce\ECommerceBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use ECommerce\ECommerceBundle\Entity\Tva;
+
 /**
  * Produit
  *
@@ -79,9 +81,8 @@ class Produit
     private $prix;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="tva", type="integer")
+     * @ORM\ManytoOne(targetEntity="Tva", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $tva;
 
@@ -217,30 +218,6 @@ class Produit
     }
 
     /**
-     * Set tva
-     *
-     * @param integer $tva
-     *
-     * @return Produit
-     */
-    public function setTva($tva)
-    {
-        $this->tva = $tva;
-
-        return $this;
-    }
-
-    /**
-     * Get tva
-     *
-     * @return integer
-     */
-    public function getTva()
-    {
-        return $this->tva;
-    }
-
-    /**
      * Set media
      *
      * @param \ECommerce\ECommerceBundle\Entity\Media $media
@@ -317,5 +294,29 @@ class Produit
     public function getCategorie()
     {
         return $this->categorie;
+    }
+
+    /**
+     * Set tva
+     *
+     * @param \ECommerce/ECommerceBundle\Entity\Tva $tva
+     *
+     * @return Produit
+     */
+    public function setTva(Tva $tva)
+    {
+        $this->tva = $tva;
+
+        return $this;
+    }
+
+    /**
+     * Get tva
+     *
+     * @return \ECommerce/ECommerceBundle\Entity\Tva
+     */
+    public function getTva()
+    {
+        return $this->tva;
     }
 }

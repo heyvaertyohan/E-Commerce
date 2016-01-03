@@ -15,5 +15,4 @@ class CategorieController extends Controller
             'list_categories' => $list_categories
         ));
     }
-
 }
