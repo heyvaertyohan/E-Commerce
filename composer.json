@@ -19,8 +19,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
 
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        "friendsofsymfony/user-bundle": "~2.0@dev",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "friendsofsymfony/user-bundle": "dev-master",
+        "stof/doctrine-extensions-bundle": "dev-master",
+        "knplabs/knp-paginator-bundle": "dev-master"
 
     },
     "require-dev": {

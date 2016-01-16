@@ -12,21 +12,47 @@ class ProduitController extends Controller
     public function listAction()
     {
         $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier');
 
         $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->findAll();
         $form = $this->createForm(new RechercheType());
-        $panier = null;
 
-        if($session->has('panier'))
-        {
-            $panier = $session->get('panier');
-        }
-        else{
-            $panier = array();
-        }
+        $list_produits = $this->get('knp_paginator')->paginate($list_produits,$this->get('request')->query->get('page', 1),3);
 
         return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:list.html.twig', array(
             'list_produits' => $list_produits,
+            'form' => $form->createView(),
+            'panier' => $panier
+        ));
+    }
+
+    public function listByCategorieAction(Categorie $categorie)
+    {
+        $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier');
+
+        $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->byCategorie($categorie);
+        $list_produits = $this->get('knp_paginator')->paginate($list_produits,$this->get('request')->query->get('page', 1),3);
+        $form = $this->createForm(new RechercheType());
+
+        return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:list.html.twig', array(
+            'list_produits' => $list_produits,
+            'form' => $form->createView(),
+            'panier' => $panier
+        ));
+    }
+
+    public function readAction(Produit $produit)
+    {
+        $session = $this->getRequest()->getSession();
+        $panier = $session->get('panier');
+
+        $produit = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->find($produit->getId());
+
+        $form = $this->createForm(new RechercheType());
+
+        return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:read.html.twig', array(
+            'produit' => $produit,
             'form' => $form->createView(),
             'panier' => $panier
         ));
@@ -49,30 +75,5 @@ class ProduitController extends Controller
             'form' => $form->createView()
         ));
     }
-
-    public function listByCategorieAction(Categorie $categorie)
-    {
-        $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->byCategorie($categorie);
-        $form = $this->createForm(new RechercheType());
-
-        return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:list.html.twig', array(
-            'list_produits' => $list_produits,
-            'form' => $form->createView()
-        ));
-    }
-
-    public function readAction(Produit $produit)
-    {
-        $produit = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->find($produit->getId());
-        $form = $this->createForm(new RechercheType());
-        $list_categories = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Categorie')->findAll();
-
-        return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:read.html.twig', array(
-            'produit' => $produit,
-            'list_categories' => $list_categories,
-            'form' => $form->createView()
-        ));
-    }
-
 
 }

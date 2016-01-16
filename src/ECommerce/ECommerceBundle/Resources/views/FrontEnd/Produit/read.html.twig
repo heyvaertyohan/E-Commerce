@@ -1,9 +1,21 @@
 {% extends 'ECommerceECommerceBundle::layoutFrondEnd.html.twig' %}
 
-
-{% block menu %}
-    {% include '@ECommerceECommerce/FrontEnd/Categorie/list.html.twig' %}
+{% block menuCategorieProduit %}
+    {% render(controller('ECommerceECommerceBundle:FrontEnd/Categorie:list')) %}
 {% endblock %}
+
+{% block menuPanier %}
+    {% render(controller('ECommerceECommerceBundle:FrontEnd/Panier:menu')) %}
+{% endblock %}
+
+{% block menuUtilisateur %}
+    {% render(controller('ECommerceUtilisateurBundle:Utilisateur:menu')) %}
+{% endblock %}
+
+{% block menuRecherche %}
+    {% include ('ECommerceECommerceBundle:FrontEnd/Produit:recherche.html.twig') %}
+{% endblock %}
+
 
 {% block pagecontain %}
 
@@ -26,7 +38,11 @@
                             </select>
 
                             <div>
-                                <button class="btn btn-primary">Ajouter au panier</button>
+                                {% if panier[produit.id] is not defined %}
+                                <button class="btn btn-primary" href="{{ path('e_commerce_panier_ajouter', {slug:produit.slug} ) }}">Ajouter au panier</button>
+                                {% else %}
+                                <button class="btn btn-primary">Ce produit est déjà dans le panier</button>
+                                {% endif %}
                             </div>
                         </form>
 

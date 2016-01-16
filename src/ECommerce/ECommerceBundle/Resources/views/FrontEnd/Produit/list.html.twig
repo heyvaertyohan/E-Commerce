@@ -1,7 +1,19 @@
 {% extends 'ECommerceECommerceBundle::layoutFrondEnd.html.twig' %}
 
-{% block menu %}
+{% block menuCategorieProduit %}
     {% render(controller('ECommerceECommerceBundle:FrontEnd/Categorie:list')) %}
+{% endblock %}
+
+{% block menuPanier %}
+    {% render(controller('ECommerceECommerceBundle:FrontEnd/Panier:menu')) %}
+{% endblock %}
+
+{% block menuUtilisateur %}
+    {% render(controller('ECommerceUtilisateurBundle:Utilisateur:menu')) %}
+{% endblock %}
+
+{% block menuRecherche %}
+    {% include ('ECommerceECommerceBundle:FrontEnd/Produit:recherche.html.twig') %}
 {% endblock %}
 
 {% block pagecontain %}
@@ -9,6 +21,7 @@
     <div class="span9">
 
         <ul class="thumbnails">
+
             {% for produit in list_produits %}
             <li class="span3">
                 <div class="thumbnail">
@@ -21,8 +34,11 @@
                         {% endif %}
 
                         <td>
-                            <a class="btn btn-primary" href="{{ path('e_commerce_read_produit', {slug:produit.slug}) }} ">Plus d'infos</a>
-                        <a class="btn btn-success" href="{{ path('e_commerce_panier') }}">Ajouter au panier</a>
+                            <a class="btn btn-primary" href="{{ path('e_commerce_read_produit', {slug:produit.slug} ) }} ">Plus d'infos</a>
+
+                            {% if panier[produit.id] is not defined   %}
+                            <a class="btn btn-success" href="{{ path('e_commerce_panier_ajouter', {slug:produit.slug} ) }}">Ajouter au panier</a>
+                            {% endif %}
                     </div>
                 </div>
             </li>
@@ -30,17 +46,17 @@
 
         </ul>
 
-        <div class="pagination">
-            <ul>
-                <li class="disabled"><span>Précédent</span></li>
-                <li class="disabled"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">Suivant</a></li>
-            </ul>
-        </div>
+        {% if list_produits|length  > 0 %}
+            <div class="navigation">
+                {{ knp_pagination_render(list_produits) }}
+            </div>
+        {% else %}
+            <div class="navigation">
+                <h1>Aucun produit dans le panier</h1>
+            </div>
+
+        {% endif %}
+
 
     </div>
 {% endblock %}

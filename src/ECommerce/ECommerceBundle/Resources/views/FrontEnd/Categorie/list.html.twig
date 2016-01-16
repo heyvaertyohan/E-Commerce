@@ -1,5 +1,11 @@
-{% for categorie in list_categories %}
-    <li>
-        <a href="{{ path('e_commerce_list_produits_categorie', {slug:categorie.slug}) }}">{{ categorie.nom }}</a>
-    </li>
-{% endfor %}
+<div class="well">
+    <ul class="nav nav-list">
+        <li class="nav-header">Nos produits</li>
+
+        {% for categorie in list_categories %}
+            <li>
+                <a href="{{ path('e_commerce_list_produits_categorie', {slug:categorie.slug}) }}">{{ categorie.nom }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

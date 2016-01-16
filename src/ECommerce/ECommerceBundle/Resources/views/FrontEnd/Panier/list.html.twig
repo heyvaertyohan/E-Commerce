@@ -4,9 +4,16 @@
     {{ parent() }}
 {% endblock  %}
 
-{% block menu %}
+{% block menuCategorieProduit %}
     {% render(controller('ECommerceECommerceBundle:FrontEnd/Categorie:list')) %}
 {% endblock %}
+
+{% set totalHT = 0 %}
+{% set totalTTC = 0%}
+{% set refTva = {} %}
+{% for produit in list_produits %}
+    {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : 0 }) %}
+{% endfor %}
 
 {% block pagecontain %}
     <div class="span9">
@@ -38,41 +45,42 @@
 
             {% for produit in list_produits %}
                 <tr>
-                    <form action="{{ path('e_commerce_panier_ajouter', { 'id' : produit.id }) }}" method="get">
+                    <form action="{{ path('e_commerce_panier_ajouter',  {slug:produit.slug} ) }}" method="get">
                         <td>{{ produit.nom }}</td>
                         <td>
                             <select name="qte" class="span1" onChange="this.form.submit()">
-                                {#{% for i in 1..10 %}
+                                {% for i in 1..10 %}
                                     <option value="{{ i }}" {% if i == panier[produit.id] %} selected="selected" {% endif %}>{{ i }}</option>
-                                {% endfor %}#}
+                                {% endfor %}
                             </select>&nbsp;
-                            <a href="{{ path('e_commerce_panier_supprimer', { 'id' : produit.id }) }}"><i class="icon-trash"></i></a>
+                            <a href="{{ path('e_commerce_panier_supprimer', { slug:produit.slug } ) }}"><i class="icon-trash"></i></a>
                         </td>
                         <td>{{ produit.prix }} €</td>
-                        {#<td>{{ produit.prix * panier[produit.id] }} €</td>#}
+                        <td>{{ produit.prix * panier[produit.id] }} €</td>
                     </form>
                 </tr>
-                {#{% set totalHT = totalHT + (produit.prix * panier[produit.id]) %}#}
-               {# {% set totalTTC = totalTTC + (produit.prix * panier[produit.id])|tva(produit.tva.multiplicate) %}#}
-               {# {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prix * panier[produit.id])|montantTva(produit.tva.multiplicate) }) %}#}
+
+                {% set totalHT = totalHT + (produit.prix * panier[produit.id]) %}
+               {% set totalTTC = totalTTC + (produit.prix * panier[produit.id])|tva(produit.tva.multiplicate) %}
+               {% set refTva = refTva|merge({ ('%' ~ produit.tva.valeur) : refTva['%' ~ produit.tva.valeur] + ( produit.prix * panier[produit.id])|montantTva(produit.tva.multiplicate) }) %}
+
             {% endfor %}
             </tbody>
         </table>
         {% if list_produits|length != 0 %}
             <dl class="dl-horizontal pull-right">
                 <dt>Total HT :</dt>
-                {#<dd>{{ totalHT }} €</dd>#}
-
-                {#{% for key, tva in refTva %}
+                <dd>{{ totalHT }} €</dd>
+                {% for key, tva in refTva %}
                     <dt>TVA {{ key }} :</dt>
                     <dd>{{ tva }} €</dd>
                 {% endfor %}
-#}
-                {#<dt>Total TTC :</dt>
-                <dd>{{ totalTTC }} €</dd>#}
+
+                <dt>Total TTC :</dt>
+                <dd>{{ totalTTC }} €</dd>
             </dl>
             <div class="clearfix"></div>
-            <a href="{{ path('e_commerce_panier_livraison') }}" class="btn btn-success pull-right">Valider mon panier</a>
+            <a href="{{ path('e_commerce_panierlivraison') }}" class="btn btn-success pull-right">Valider mon panier</a>
         {% endif %}
         <a href="{{ path('e_commerce_list_produits') }}" class="btn btn-primary">Continuer mes achats</a>
     </div>

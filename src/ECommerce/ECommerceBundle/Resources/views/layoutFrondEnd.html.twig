@@ -19,15 +19,11 @@
                     <a class="brand" href="index.php">ECommerce fruits légumes</a>
 
                     <div class="nav-collapse collapse">
-                        {% include ('ECommerceECommerceBundle:FrontEnd/Produit:recherche.html.twig') %}
+
+                        {% block menuRecherche %}
+                        {% endblock %}
+
                     </div>
-                    {#{% if form is not defined %}
-
-                        <div class="nav-collapse collapse">
-                            {% include ('ECommerceECommerceBundle:FrontEnd/Produit:recherche.html.twig') %}
-                        </div>
-                    {% endif %}#}
-
                 </div>
             </div>
         </div>
@@ -40,70 +36,14 @@
         <div class="row">
             <div class="span3">
 
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Nos produits</li>
+                {% block menuCategorieProduit %}
+                {% endblock %}
 
-                        {% block menu %}
-                        {% endblock %}
-                    </ul>
-                </div>
+                {% block menuPanier %}
+                {% endblock %}
 
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Panier</li>
-                        <li>
-                            <a href="{{ path('e_commerce_panier') }}">
-                                {% if list_produits == 0  %}
-                                    <p>Aucun article dans votre panier</p>
-                                {% elseif list_produits == 1 %}
-                                    <p>Vous avez {{ list_produits|length }} produit dans votre panier</p>
-                                {% else %}
-                                    <p>Vous avez {{ list_produits|length }} produits dans votre panier</p>
-                                {% endif %}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
-                {% if (is_granted('IS_AUTHENTICATED_FULLY') ) %}
-                <div class="well">
-                    <ul class="nav nav-list">
-                        <li class="nav-header">Bienvenue {{ app.user }}</li>
-                        <li>
-                            <a href="{{ path('fos_user_profile_show') }} ">Mes informations</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fos_user_profile_edit') }} ">Editer mes informations</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fos_user_change_password') }} "> Changer mon mot de passe </a>
-                        </li>
-                        <li>
-                            <a href="#">Mes factures</a>
-                        </li>
-                        <li>
-                            <a href="#">Mes adresses</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('fos_user_security_logout') }}">deconnexion</a>
-                        </li>
-                    </ul>
-                </div>
-
-                {% else %}
-                    <div class="well">
-                        <ul class="nav nav-list">
-                            <li>
-                                <a href="{{ path('fos_user_security_login') }} ">Se connecter</a>
-                            </li>
-                            <li>
-                                <a href="{{ path('fos_user_registration_register') }} ">S'incrire</a>
-                            </li>
-                        </ul>
-                    </div>
-                {% endif %}
-
+                {% block menuUtilisateur %}
+                {% endblock %}
 
             </div>
 
@@ -125,10 +65,6 @@
 
                     <ul class="nav nav-stacked">
                         {% render(controller('ECommercePageBundle:Page:menu')) %}
-
-                    {#{% for page in list_pages %}
-                        <li><a href="{{ path('page_page', {id:page.id}) }}  ">{{ page.titre }}</a></li>
-                    {% endfor %}#}
                     </ul>
                 </div>
 

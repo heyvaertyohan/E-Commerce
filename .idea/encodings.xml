@@ -14,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/src/ECommerce/ECommerceBundle/Resources/views/FrontEnd/Produit/recherche.html.twig" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/src/ECommerce/ECommerceBundle/Resources/views/layoutFrondEnd.html.twig" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/ECommerce/ECommerceBundle/Twig" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/src/ECommerce/UtilisateurBundle/Form" charset="windows-1252" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

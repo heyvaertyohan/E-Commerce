@@ -14,22 +14,22 @@ e_commerce_read_produit:
     path:     /read/{slug}
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:read }
 
+e_commerce_panierlivraison:
+    path:     /panier/livraison
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:livraisonvalidation }
+
 e_commerce_panier:
     path:     /panier
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:list }
-
-e_commerce_panier_livraison:
-    path:     /panier/livraison
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:livraison }
 
 e_commerce_panier_validation:
     path:     /panier/validation
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:validation }
 
 e_commerce_panier_ajouter:
-    path:     /panier/ajouter/{id}
+    path:     /panier/ajouter/{slug}
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:ajouter }
 
 e_commerce_panier_supprimer:
-    path:     /panier/supprimer/{(id)
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:ajouter }
+    path:     /panier/supprimer/{slug}
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:supprimer }
