@@ -11,7 +11,7 @@ use ECommerce\ECommerceBundle\Entity\Tva;
  * Produit
  *
  * @ORM\Table("produit")
- * @ORM\Entity(repositoryClass="ECommerce\ECommerceBundle\Entity\ProduitRepository")
+ * @ORM\Entity(repositoryClass="ECommerce\ECommerceBundle\Repository\ProduitRepository")
  */
 class Produit
 {

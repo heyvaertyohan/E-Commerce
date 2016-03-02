@@ -28,37 +28,52 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
         $tab_Utilisateur = array(
             array(
                 "username" => "benjamin",
+                "nom" => "benjamin",
+                "prenom" => "benjamin",
                 "email" => "benjamin@gmail.com",
+                "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'testpwd',
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
                 "username" => "mathilde",
+                "nom" => "mathilde",
+                "prenom" => "mathilde",
                 "email" => "mathilde@gmail.com",
+                "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'mathilde',
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
                 "username" => "pauline",
+                "nom" => "pauline",
+                "prenom" => "pauline",
                 "email" => "pauline@gmail.com",
+                "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'testpwd',
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
                 "username" => "dominique",
+                "nom" => "dominique",
+                "prenom" => "dominique",
                 "email" => "dominique@gmail.com",
+                "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'testpwd',
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
                 "username" => "yohan",
+                "nom" => "yohan",
+                "prenom" => "yohan",
                 "email" => "heyvaertyohan@gmail.com",
+                "telephone" => "0484123456",
                 "enabled" => 1,
-                "password" => 'testpwd',
+                "password" => 'yohan',
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             )
         );
@@ -66,8 +81,11 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
         for($i=0; $i< sizeof($tab_Utilisateur); $i++ ){
             $utilisateur = new Utilisateur();
             $utilisateur->setUsername($tab_Utilisateur[$i]['username']);
+            $utilisateur->setNom($tab_Utilisateur[$i]['nom']);
+            $utilisateur->setPrenom($tab_Utilisateur[$i]['prenom']);
             $utilisateur->setEmail($tab_Utilisateur[$i]['email']);
             $utilisateur->setEnabled($tab_Utilisateur[$i]['enabled']);
+            $utilisateur->setTelephone($tab_Utilisateur[$i]['telephone']);
             $utilisateur->setPassword($this->container->get('security.encoder_factory')->getEncoder($utilisateur)->encodePassword($tab_Utilisateur[$i]['password'], $utilisateur->getSalt()));
 
             $manager->persist($utilisateur);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecommerce\EcommerceBundle\Form;
+namespace ECommerce\UtilisateurBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -15,10 +15,7 @@ class UtilisateursAdressesType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
-            ->add('prenom')
-            ->add('telephone')
-            ->add('adresse')
+            ->add('rue')
             ->add('cp')
             ->add('ville')
             ->add('pays')
@@ -33,7 +30,7 @@ class UtilisateursAdressesType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Ecommerce\EcommerceBundle\Entity\UtilisateursAdresses'
+            'data_class' => 'ECommerce\UtilisateurBundle\Entity\UtilisateurAdresse'
         ));
     }
 
@@ -42,6 +39,6 @@ class UtilisateursAdressesType extends AbstractType
      */
     public function getName()
     {
-        return 'ecommerce_ecommercebundle_utilisateursadresses';
+        return 'ecommerce_utilisateurbundle_utilisateursadresses';
     }
 }

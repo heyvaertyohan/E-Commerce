@@ -9,31 +9,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ProduitController extends Controller
 {
-    public function listAction()
+    public function listAction(Categorie $categorie = null)
     {
         $session = $this->getRequest()->getSession();
         $panier = $session->get('panier');
 
-        $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->findAll();
+        /*
+         * On teste si la catégorie légumes ou fruit est initialisée
+         * sinon on récupère tous les produits.
+         */
+        if($categorie == null){
+            $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->findAll();
+        }
+        else{
+            $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->byCategorie($categorie);
+        }
+
         $form = $this->createForm(new RechercheType());
 
         $list_produits = $this->get('knp_paginator')->paginate($list_produits,$this->get('request')->query->get('page', 1),3);
-
-        return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:list.html.twig', array(
-            'list_produits' => $list_produits,
-            'form' => $form->createView(),
-            'panier' => $panier
-        ));
-    }
-
-    public function listByCategorieAction(Categorie $categorie)
-    {
-        $session = $this->getRequest()->getSession();
-        $panier = $session->get('panier');
-
-        $list_produits = $this->getDoctrine()->getManager()->getRepository('ECommerceECommerceBundle:Produit')->byCategorie($categorie);
-        $list_produits = $this->get('knp_paginator')->paginate($list_produits,$this->get('request')->query->get('page', 1),3);
-        $form = $this->createForm(new RechercheType());
 
         return $this->render('ECommerceECommerceBundle:FrontEnd/Produit:list.html.twig', array(
             'list_produits' => $list_produits,

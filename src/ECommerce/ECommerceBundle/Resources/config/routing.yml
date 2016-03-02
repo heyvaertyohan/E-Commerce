@@ -4,7 +4,7 @@ e_commerce_list_produits:
 
 e_commerce_list_produits_categorie:
     path:     /categorie/{slug}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:listByCategorie }
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:list }
 
 e_commerce_recherche_produit:
     path:     /recherche
@@ -14,13 +14,17 @@ e_commerce_read_produit:
     path:     /read/{slug}
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:read }
 
-e_commerce_panierlivraison:
-    path:     /panier/livraison
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:livraisonvalidation }
-
 e_commerce_panier:
     path:     /panier
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:list }
+
+e_commerce_panier_livraison:
+    path:     /panier/livraison
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:livraison }
+
+e_commerce_panier_livraisonAdresseSuppression:
+    pattern:  /livraison/adresse/suppression/{id}
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:adresseSuppression }
 
 e_commerce_panier_validation:
     path:     /panier/validation
@@ -33,3 +37,8 @@ e_commerce_panier_ajouter:
 e_commerce_panier_supprimer:
     path:     /panier/supprimer/{slug}
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:supprimer }
+
+
+e_commerce_livraison_validation:
+    pattern:  /api/banque/{id}
+    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Commande:validation }

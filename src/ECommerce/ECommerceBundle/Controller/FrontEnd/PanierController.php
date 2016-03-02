@@ -8,8 +8,8 @@ use ECommerce\ECommerceBundle\Form\RechercheType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 use ECommerce\ECommerceBundle\Entity\Produit;
-use ECommerce\UtilisateurBundle\Entity\UtilisateurAdresse;
-use Ecommerce\EcommerceBundle\Form\UtilisateursAdressesType;
+use ECommerce\UtilisateurBundle\Entity;
+use ECommerce\UtilisateurBundle\Form;
 
 class PanierController extends Controller
 {
@@ -36,11 +36,6 @@ class PanierController extends Controller
             'panier' => $session->get('panier')));
     }
 
-    public function validationAction()
-    {
-        return $this->render('ECommerceECommerceBundle:FrontEnd/Panier:validation.html.twig');
-    }
-
     public function supprimerAction(Produit $produit)
     {
         $session = $this->getRequest()->getSession();
@@ -53,21 +48,6 @@ class PanierController extends Controller
         }
 
         return $this->redirect($this->generateUrl('e_commerce_panier'));
-    }
-
-    public function supprimer2Action($id)
-    {
-        $session = $this->getRequest()->getSession();
-        $panier = $session->get('panier');
-
-        if (array_key_exists($id, $panier))
-        {
-            unset($panier[$id]);
-            $session->set('panier',$panier);
-            $this->get('session')->getFlashBag()->add('success','Article supprimé avec succès');
-        }
-
-        return $this->redirect($this->generateUrl('panier'));
     }
 
     public function ajouterAction(Produit $produit)
@@ -96,11 +76,43 @@ class PanierController extends Controller
         return $this->redirect($this->generateUrl('e_commerce_panier'));
     }
 
-    public function livraisonvalidationAction()
+    public function validationAction()
+    {
+        if ($this->get('request')->getMethod() == 'POST')
+            $this->setLivraisonOnSession();
+
+        $em = $this->getDoctrine()->getManager();
+        $prepareCommande = $this->forward('ECommerceBundle:Commande:prepareCommande');
+        $commande = $em->getRepository('ECommerceECommerceBundle:Commande')->find($prepareCommande->getContent());
+
+        dump($prepareCommande);
+        return $this->render('ECommerceECommerceBundle:FrontEnd/Panier:validation.html.twig', array('commande' => $commande));
+    }
+
+    public function setLivraisonOnSession()
+    {
+        $session = $this->getRequest()->getSession();
+
+        if (!$session->has('adresse')) $session->set('adresse',array());
+        $adresse = $session->get('adresse');
+
+        if ($this->getRequest()->request->get('livraison') != null && $this->getRequest()->request->get('facturation') != null)
+        {
+            $adresse['livraison'] = $this->getRequest()->request->get('livraison');
+            $adresse['facturation'] = $this->getRequest()->request->get('facturation');
+        } else {
+            return $this->redirect($this->generateUrl('e_commerce_panier_validation'));
+        }
+
+        $session->set('adresse',$adresse);
+        return $this->redirect($this->generateUrl('e_commerce_panier_validation'));
+    }
+
+    public function livraisonAction()
     {
         $utilisateur = $this->container->get('security.context')->getToken()->getUser();
-        $entity = new UtilisateurAdresse();
-        $form = $this->createForm(new UtilisateursAdressesType(), $entity);
+        $entity = new Entity\UtilisateurAdresse();
+        $form = $this->createForm(new Form\UtilisateursAdressesType(), $entity);
 
         if ($this->get('request')->getMethod() == 'POST')
         {
@@ -111,12 +123,25 @@ class PanierController extends Controller
                 $em->persist($entity);
                 $em->flush();
 
-                return $this->redirect($this->generateUrl('livraison'));
+                return $this->redirect($this->generateUrl('e_commerce_panier_livraison'));
             }
         }
 
-        return $this->render('EcommerceBundle:Default:panier/layout/livraison.html.twig', array('utilisateur' => $utilisateur,
+        return $this->render('ECommerceECommerceBundle:FrontEnd/Panier:livraison.html.twig', array('utilisateur' => $utilisateur,
             'form' => $form->createView()));
+    }
+
+    public function adresseSuppressionAction(Entity\UtilisateurAdresse $UtilisateurAdresse){
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('ECommerceUtilisateurBundle:UtilisateurAdresse')->find($UtilisateurAdresse->getId());
+
+        if ($this->container->get('security.context')->getToken()->getUser() != $entity->getUtilisateur() || !$entity)
+            return $this->redirect ($this->generateUrl ('e_commerce_panier_livraison'));
+
+        $em->remove($entity);
+        $em->flush();
+
+        return $this->redirect ($this->generateUrl ('e_commerce_panier_livraison'));
     }
 
 }

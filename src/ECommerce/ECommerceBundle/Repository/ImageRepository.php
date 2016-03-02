@@ -1,6 +1,6 @@
 <?php
 
-namespace ECommerce\ECommerceBundle\Entity;
+namespace ECommerce\ECommerceBundle\Repository;
 
 /**
  * ImageRepository

@@ -5,15 +5,15 @@
     {{ parent() }}
 {% endblock  %}
 
-{% block menu %}
-    {% include '@ECommerceECommerce/FrontEnd/include/col-left.html.twig' %}
+{% block menuCategorieProduit %}
+    {% render(controller('ECommerceECommerceBundle:FrontEnd/Categorie:list')) %}
 {% endblock %}
 
 {% block pagecontain %}
     <div class="span9">
-        <h2>Valider mon parnier</h2>
+        <h2>Valider mon panier</h2>
 
-        <form>
+        <form action="{{ path('e_commerce_livraison_validation', {'id' : commande.id}) }}">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
@@ -42,20 +42,23 @@
                 </tr>
                 </tbody>
             </table>
+
+            <dl class="dl-horizontal pull-right">
+                <dt>Total HT :</dt>
+                <dd>799,99€</dd>
+
+                <dt>TVA :</dt>
+                <dd>200€</dd>
+
+                <dt>Total:</dt>
+                <dd>999,99€ TTC</dd>
+            </dl>
+            <div class="clearfix"></div>
+
+            <a href="{{ path('e_commerce_panier_livraison') }}" class="btn btn-primary pull-left">Retour</a>
+
+            <button type="submit" class="btn btn-success pull-right">Payer</button>
         </form>
-
-        <dl class="dl-horizontal pull-right">
-            <dt>Total HT :</dt>
-            <dd>799,99€</dd>
-
-            <dt>TVA :</dt>
-            <dd>200€</dd>
-
-            <dt>Total:</dt>
-            <dd>999,99€ TTC</dd>
-        </dl>
-        <div class="clearfix"></div>
-        <a href="#" class="btn btn-success pull-right">Payer</a>
     </div>
 {% endblock %}
 

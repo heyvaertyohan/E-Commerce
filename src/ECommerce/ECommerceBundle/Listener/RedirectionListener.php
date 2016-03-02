@@ -18,17 +18,15 @@ class RedirectionListener
     public function onKernelRequest(GetResponseEvent $event){
         $route = $event->getRequest()->attributes->get('_route');
 
-        if($route == 'e_commerce_panier_livraison' || $route == 'e_commerce_panier_validation'){
-            if($this->session->has('panier')){
+        if ($route == 'e_commerce_panier_livraison' || $route == 'e_commerce_panier_validation') {
+            if ($this->session->has('panier')) {
+                if (count($this->session->get('panier')) == 0)
+                    $event->setResponse(new RedirectResponse($this->router->generate('panier')));
+            }
 
-                if(count($this->session->get('panier') == 0)){
-                    $event->setResponse(new RedirectResponse($this->router->generate('e_commerce_panier')));
-                }
-
-                if(!is_object($this->securityContext->getToken()->getUser())){
-                    $this->session->getFlashBag()->add('notification','Vous devez vous identifier');
-                    $event->setResponse(new RedirectResponse($this->router->generate('fos_user_security_login')));
-                }
+            if (!is_object($this->securityContext->getToken()->getUser())) {
+                $this->session->getFlashBag()->add('notification','Vous devez vous identifier');
+                $event->setResponse(new RedirectResponse($this->router->generate('fos_user_security_login')));
             }
         }
     }
