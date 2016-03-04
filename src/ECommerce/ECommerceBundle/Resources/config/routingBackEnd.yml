@@ -1,0 +1,126 @@
+admin_categorie:
+    path:     /
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:index" }
+
+admin_categorie_show:
+    path:     /{id}/show
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:show" }
+
+admin_categorie_new:
+    path:     /new
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:new" }
+
+admin_categorie_create:
+    path:     /create
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:create" }
+    methods:  POST
+
+admin_categorie_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:edit" }
+
+admin_categorie_update:
+    path:     /{id}/update
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:update" }
+    methods:  [POST, PUT]
+
+admin_categorie_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Categorie:delete" }
+    methods:  [POST, DELETE]
+
+
+admin_commande:
+    path:     /
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:index" }
+
+admin_commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:show" }
+
+admin_commande_new:
+    path:     /new
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:new" }
+
+admin_commande_create:
+    path:     /create
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:create" }
+    methods:  POST
+
+admin_commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ECommerceECommerceBundle:Commande:edit" }
+
+admin_commande_update:
+    path:     /{id}/update
+    defaults: { _controller: "ECommerceECommerceBundle:Commande:update" }
+    methods:  [POST, PUT]
+
+admin_commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ECommerceECommerceBundle:Commande:delete" }
+    methods:  [POST, DELETE]
+
+
+admin_media:
+    path:     /
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:index" }
+
+admin_media_show:
+    path:     /{id}/show
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:show" }
+
+admin_media_new:
+    path:     /new
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:new" }
+
+admin_media_create:
+    path:     /create
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:create" }
+    methods:  POST
+
+admin_media_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:edit" }
+
+admin_media_update:
+    path:     /{id}/update
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:update" }
+    methods:  [POST, PUT]
+
+admin_media_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Media:delete" }
+    methods:  [POST, DELETE]
+
+
+admin_produit:
+    path:     /
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:index" }
+
+admin_produit_show:
+    path:     /{id}/show
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:show" }
+
+admin_produit_new:
+    path:     /new
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:new" }
+
+admin_produit_create:
+    path:     /create
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:create" }
+    methods:  POST
+
+admin_produit_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:edit" }
+
+admin_produit_update:
+    path:     /{id}/update
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:update" }
+    methods:  [POST, PUT]
+
+admin_produit_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Produit:delete" }
+    methods:  [POST, DELETE]

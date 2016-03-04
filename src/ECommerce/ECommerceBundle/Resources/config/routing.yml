@@ -1,60 +1,19 @@
-e_commerce_e_commerce_admin_commande:
-    resource: "@ECommerceECommerceBundle/Resources/config/routing/commande.yml"
+admin_commande:
+    resource: "@ECommerceECommerceBundle/Resources/config/routingBackEnd.yml"
     prefix:   /admin/commande
 
-e_commerce_e_commerce_admin_media:
-    resource: "@ECommerceECommerceBundle/Resources/config/routing/media.yml"
+admin_media:
+    resource: "@ECommerceECommerceBundle/Resources/config/routingBackEnd.yml"
     prefix:   /admin/media
 
-e_commerce_e_commerce_admin_categorie:
-    resource: "@ECommerceECommerceBundle/Resources/config/routing/categorie.yml"
+admin_categorie:
+    resource: "@ECommerceECommerceBundle/Resources/config/routingBackEnd.yml"
     prefix:   /admin/categorie
 
-e_commerce_e_commerce_admin_produit:
-    resource: "@ECommerceECommerceBundle/Resources/config/routing/produit.yml"
+admin_produit:
+    resource: "@ECommerceECommerceBundle/Resources/config/routingBackEnd.yml"
     prefix:   /admin/produit
 
-e_commerce_list_produits:
-    path:     /
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:list }
-
-e_commerce_list_produits_categorie:
-    path:     /categorie/{slug}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:list }
-
-e_commerce_recherche_produit:
-    path:     /recherche
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:recherche }
-
-e_commerce_read_produit:
-    path:     /read/{slug}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:read }
-
-e_commerce_panier:
-    path:     /panier
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:list }
-
-e_commerce_panier_livraison:
-    path:     /panier/livraison
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:livraison }
-
-e_commerce_panier_livraisonAdresseSuppression:
-    pattern:  /livraison/adresse/suppression/{id}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:adresseSuppression }
-
-e_commerce_panier_validation:
-    path:     /panier/validation
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:validation }
-
-e_commerce_panier_ajouter:
-    path:     /panier/ajouter/{slug}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:ajouter }
-
-e_commerce_panier_supprimer:
-    path:     /panier/supprimer/{slug}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Panier:supprimer }
-
-
-e_commerce_livraison_validation:
-    pattern:  /api/banque/{id}
-    defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Commande:validation }
+front:
+    resource: "@ECommerceECommerceBundle/Resources/config/routingFrontEnd.yml"
+    prefix:   /
