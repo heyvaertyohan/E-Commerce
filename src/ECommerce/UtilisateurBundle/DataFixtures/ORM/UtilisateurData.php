@@ -27,6 +27,19 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
 
         $tab_Utilisateur = array(
             array(
+                "username" => "yohan",
+                "nom" => "yohan",
+                "prenom" => "yohan",
+                "email" => "heyvaertyohan@gmail.com",
+                "telephone" => "0484123456",
+                "enabled" => 1,
+                "password" => 'yohan',
+                "role" => array(
+                    "ROLE_ADMIN"
+                ),
+                "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
+            ),
+            array(
                 "username" => "benjamin",
                 "nom" => "benjamin",
                 "prenom" => "benjamin",
@@ -34,6 +47,9 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
                 "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'testpwd',
+                "role" => array(
+                    ""
+                ),
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
@@ -44,6 +60,9 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
                 "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'mathilde',
+                "role" => array(
+                    ""
+                ),
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
@@ -54,6 +73,9 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
                 "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'testpwd',
+                "role" => array(
+                    ""
+                ),
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             ),
             array(
@@ -64,16 +86,9 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
                 "telephone" => "0484123456",
                 "enabled" => 1,
                 "password" => 'testpwd',
-                "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
-            ),
-            array(
-                "username" => "yohan",
-                "nom" => "yohan",
-                "prenom" => "yohan",
-                "email" => "heyvaertyohan@gmail.com",
-                "telephone" => "0484123456",
-                "enabled" => 1,
-                "password" => 'yohan',
+                "role" => array(
+                    ""
+                ),
                 "media" => $manager->getRepository('ECommerceECommerceBundle:Media')->findOneBy(array('nom' => 'user')),
             )
         );
@@ -87,6 +102,7 @@ class UtilisateursData extends AbstractFixture implements ContainerAwareInterfac
             $utilisateur->setEnabled($tab_Utilisateur[$i]['enabled']);
             $utilisateur->setTelephone($tab_Utilisateur[$i]['telephone']);
             $utilisateur->setPassword($this->container->get('security.encoder_factory')->getEncoder($utilisateur)->encodePassword($tab_Utilisateur[$i]['password'], $utilisateur->getSalt()));
+            $utilisateur->setRoles($tab_Utilisateur[$i]['role']);
 
             $manager->persist($utilisateur);
         }

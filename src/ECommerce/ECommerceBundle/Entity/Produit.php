@@ -48,12 +48,13 @@ class Produit
     private $description;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media")
+     * @ORM\OneToOne(targetEntity="ECommerce\ECommerceBundle\Entity\Media", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $media;
 
     /**
-     * @ORM\ManyToOne(targetEntity="ECommerce\ECommerceBundle\Entity\Categorie", cascade={"persist","remove"})
+     * @ORM\ManyToOne(targetEntity="ECommerce\ECommerceBundle\Entity\Categorie", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $categorie;
@@ -81,7 +82,7 @@ class Produit
     private $prix;
 
     /**
-     * @ORM\ManytoOne(targetEntity="Tva", cascade={"persist", "remove"})
+     * @ORM\ManytoOne(targetEntity="Tva", cascade={"persist"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $tva;

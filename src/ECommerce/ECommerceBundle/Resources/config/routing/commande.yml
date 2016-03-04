@@ -1,0 +1,30 @@
+admin_commande:
+    path:     /
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:index" }
+
+admin_commande_show:
+    path:     /{id}/show
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:show" }
+
+admin_commande_new:
+    path:     /new
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:new" }
+
+admin_commande_create:
+    path:     /create
+    defaults: { _controller: "ECommerceECommerceBundle:BackEnd/Commande:create" }
+    methods:  POST
+
+admin_commande_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ECommerceECommerceBundle:Commande:edit" }
+
+admin_commande_update:
+    path:     /{id}/update
+    defaults: { _controller: "ECommerceECommerceBundle:Commande:update" }
+    methods:  [POST, PUT]
+
+admin_commande_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ECommerceECommerceBundle:Commande:delete" }
+    methods:  [POST, DELETE]

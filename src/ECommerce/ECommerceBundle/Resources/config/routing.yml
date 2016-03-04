@@ -1,3 +1,19 @@
+e_commerce_e_commerce_admin_commande:
+    resource: "@ECommerceECommerceBundle/Resources/config/routing/commande.yml"
+    prefix:   /admin/commande
+
+e_commerce_e_commerce_admin_media:
+    resource: "@ECommerceECommerceBundle/Resources/config/routing/media.yml"
+    prefix:   /admin/media
+
+e_commerce_e_commerce_admin_categorie:
+    resource: "@ECommerceECommerceBundle/Resources/config/routing/categorie.yml"
+    prefix:   /admin/categorie
+
+e_commerce_e_commerce_admin_produit:
+    resource: "@ECommerceECommerceBundle/Resources/config/routing/produit.yml"
+    prefix:   /admin/produit
+
 e_commerce_list_produits:
     path:     /
     defaults: { _controller: ECommerceECommerceBundle:FrontEnd/Produit:list }

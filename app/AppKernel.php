@@ -24,7 +24,6 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
-            new ECommerce\PageBundle\ECommercePageBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 

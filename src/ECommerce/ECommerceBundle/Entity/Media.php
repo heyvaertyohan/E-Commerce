@@ -14,8 +14,6 @@ class Media
 {
     /*const Img = 'mainslider';*/
     /**
-     * @var integer
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -23,26 +21,19 @@ class Media
     private $id;
 
     /**
-     * @var string
-     *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
 
     /**
-     * @var string
-     *
      * @ORM\Column(name="description", type="string", length=255)
      */
     private $description;
 
     /**
-     * @var string
-     *
      * @ORM\Column(name="path", type="string", length=255)
      */
     private $path;
-
 
     /**
      * Get id

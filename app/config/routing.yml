@@ -1,7 +1,3 @@
-page_page:
-    resource: "@ECommercePageBundle/Resources/config/routing.yml"
-    prefix:   /
-
 e_commerce_utilisateur:
     resource: "@ECommerceUtilisateurBundle/Resources/config/routing.yml"
     prefix:   /

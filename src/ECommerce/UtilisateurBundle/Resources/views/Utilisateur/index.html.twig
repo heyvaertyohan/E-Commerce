@@ -1,0 +1,39 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Utilisateur list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Telephone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_utilisateur_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.nom }}</td>
+                <td>{{ entity.prenom }}</td>
+                <td>{{ entity.telephone }}</td>
+                <td>
+                    <a href="{{ path('admin_utilisateur_show', { 'id': entity.id }) }}"><i class="icon-book"></i></a>
+                    <a href="{{ path('admin_utilisateur_edit', { 'id': entity.id }) }}"><i class="icon-edit"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('admin_utilisateur_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

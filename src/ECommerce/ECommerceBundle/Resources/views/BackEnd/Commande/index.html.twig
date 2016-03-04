@@ -1,0 +1,45 @@
+{% extends '::layoutAdmin.html.twig' %}
+
+{% block body %}
+    <h1>Commande list</h1>
+
+    <table class="records_list table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Valider</th>
+                <th>Date</th>
+                <th>Reference</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('admin_commande_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.valider }}</td>
+                <td>{% if entity.date %}{{ entity.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.reference }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('admin_commande_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_commande_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('admin_commande_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

@@ -1,0 +1,30 @@
+admin_utilisateur:
+    path:     /
+    defaults: { _controller: "ECommerceUtilisateurBundle:BackEnd/Utilisateur:index" }
+
+admin_utilisateur_show:
+    path:     /{id}/show
+    defaults: { _controller: "ECommerceUtilisateurBundle:BackEnd/Utilisateur:show" }
+
+admin_utilisateur_new:
+    path:     /new
+    defaults: { _controller: "ECommerceUtilisateurBundle:BackEnd/Utilisateur:new" }
+
+admin_utilisateur_create:
+    path:     /create
+    defaults: { _controller: "ECommerceUtilisateurBundle:BackEnd/Utilisateur:create" }
+    methods:  POST
+
+admin_utilisateur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ECommerceUtilisateurBundle:Utilisateur:edit" }
+
+admin_utilisateur_update:
+    path:     /{id}/update
+    defaults: { _controller: "ECommerceUtilisateurBundle:Utilisateur:update" }
+    methods:  [POST, PUT]
+
+admin_utilisateur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ECommerceUtilisateurBundle:Utilisateur:delete" }
+    methods:  [POST, DELETE]

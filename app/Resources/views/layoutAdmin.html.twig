@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>ECommerce administration</title>
+
+        <link href="{{ asset('bundles/ecommerceecommerce/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/ecommerceecommerce/css/bootstrap-responsive.css') }}" rel="stylesheet"
+              type="text/css">
+        <link href="{{ asset('bundles/ecommerceecommerce/css/font-awesome.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/ecommerceecommerce/css/backend.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('bundles/ecommercepage/ckeditor/contents.css') }}" rel="stylesheet" type="text/css">
+    {% endblock %}
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="navbar navbar-inverse navbar-fixed-top " id="myNavbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <button class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse" type="button">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="brand" href="index.php">Administration</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="span3">
+
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li>
+                        <a href="{{ path('admin_produit') }}">Produits</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_categorie') }}">Catégories produits</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li>
+                        {#<a href="{{ path('admin_client') }}">Clients</a>#}
+                    </li>
+                    <li>
+                        <a href="{{ path('admin_commande') }}">Commandes</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="well">
+                <ul class="nav nav-list">
+                    <li>
+                        <a href="{{ path('admin_page') }}">Pages</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="span9">
+            {% block body %}
+            {% endblock %}
+
+        </div>
+    </div>
+</div>
+
+
+<footer id="footer" class="vspace20">
+    <div class="container">
+        <div class="row">
+            <div class="span4">
+                <p>&copy; Copyright 2014 - DevAndClick</p>
+            </div>
+        </div>
+</footer>
+
+{% block javascript %}
+    <script src="{{ asset('bundles/ecommercepage/ckeditor/ckeditor.js') }}"></script>
+{% endblock %}
+</body>
+</html>
